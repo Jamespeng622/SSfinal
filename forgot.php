@@ -23,15 +23,15 @@
                 New Password: <input class="in" type="password" name="password"/><br>
                 Confirm Password: <input class="in" type="password" name="confirm"/><br>
 
-                <input type="submit" class="btn" value="Overwrite"/>
+                <input type="submit" value="Overwrite"/>
             </form>
 
-        <button>Back</Button>
+        <button id="back">Back</button>
     </div>
 
     <div>
     <?php
-        $dbh = new PDO('mysql:host=softwarestudio.2y.idv.tw;dbname=final', 's105030010', 'zxc123654');
+        $dbh = new PDO('mysql:host=softwarestudio.2y.idv.tw;dbname=s105030010', 's105030010', 'zxc123654');
         $username = "";
         $password = "";
         $confirm = "";
@@ -64,13 +64,13 @@
 
         if($_POST && $check == true && $same == true){
             $username = $_POST["username"];
-            $select = $dbh->prepare("select * from user where username=?");
+            $select = $dbh->prepare("select * from final_user where username=?");
             $select->execute([$username]);
             $get = $select->fetch();
 
             if($get){
                 if($email == $get["email"]){
-                    $update = "update user set password=? where id=?";
+                    $update = "update final_user set password=? where id=?";
                     $stmt = $dbh->prepare($update);
                     $stmt->execute(array($password, $get["id"]));
                     $errmsg = "Reset!";
@@ -87,7 +87,7 @@
     ?>
     </div>
 
-    <script type="text/javascript" src="Srcipts/forgot.js"></script>
+    <script type="text/javascript" src="Scripts/forgot.js"></script>
 
 </body>
 </html>

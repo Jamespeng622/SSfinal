@@ -22,8 +22,8 @@
                 <input type="submit" value="Sign in">
             </form>
 
-            <button>Sign Up</button>
-            <button>Forgot Password?<button>
+            <button id="signup">Sign Up</button>
+            <button id="forgot">Forgot Password?</button>
     </div>
 
     <div>
@@ -35,10 +35,10 @@
         $login = false;
 
         if($_POST){
-            $dbh = new PDO('mysql:host=softwarestudio.2y.idv.tw;dbname=final', 's105030010', 'zxc123654');
+            $dbh = new PDO('mysql:host=softwarestudio.2y.idv.tw;dbname=s105030010', 's105030010', 'zxc123654');
             $username = $_POST["username"];
             $password = $_POST["password"];
-            $select = $dbh->prepare("select * from user where username=?");
+            $select = $dbh->prepare("select * from final_user where username=?");
             $select->execute([$username]);
             $get = $select->fetch();
 
